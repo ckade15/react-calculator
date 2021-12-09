@@ -2,9 +2,13 @@ import React from "react";
 import AnswerBox from './AnswerBox';
 import Inputs from './Inputs';
 
+
 export default class Calculator extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            answer: null,
+        }
     }
 
     render(){
@@ -16,4 +20,11 @@ export default class Calculator extends React.Component {
             </div>
         );
     }
+    parentsCallback = (childData) => {
+        this.setState({
+            answer: childData,
+        });
+    }
+    
+    
 }

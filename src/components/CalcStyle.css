@@ -15,3 +15,7 @@ button{
     padding: 10px;
     border: black solid .2px;
 }
+button:hover{
+    background-color: navy;
+    color: rgb(255, 175, 169);
+}
