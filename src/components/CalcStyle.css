@@ -1,0 +1,17 @@
+
+section{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 75%;
+    
+}
+.special{
+    grid-column: span 2;
+}
+button{
+    background-color: rgb(136, 211, 255);
+    font-size: 24px;
+    height: 80px;
+    padding: 10px;
+    border: black solid .2px;
+}
