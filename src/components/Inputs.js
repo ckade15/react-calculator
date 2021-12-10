@@ -1,15 +1,20 @@
 import React from "react";
 import './CalcStyle.css';
-import { evaluate } from "mathjs";
+import { evaluate, sign } from "mathjs";
+import calc from './Calculator';
 
 export default class Inputs extends React.Component{
     constructor(props){
         super(props);
         this.processInput = this.processInput.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
         this.state = {
             input: "",
-            solvedInp: ""
+            solvedInp: "",
+            solved: false
         }
+        
+        
         
     }
     render(){
@@ -41,6 +46,7 @@ export default class Inputs extends React.Component{
         if(input === 'C'){
             this.state.input = "";
             this.state.solvedInp = "";
+            this.state.solved = false;
         }
         else if (input === '÷'){
             this.state.input += '/';
@@ -50,15 +56,101 @@ export default class Inputs extends React.Component{
         }
         else if(input === '='){
             this.state = {
-                solvedInput: evaluate(this.state.input),
+                solvedInp: evaluate(this.state.input),
                 input: "",
+                solved: true
             }
         }else{
             this.state.input = this.state.input + input;
         }
-        const passState = () => {
-            [this.state.answer] = this.props.parentsCallback(this.state.solvedInp);
+        this.sendBack();
+        
+    }
+    sendBack() {
+        if (this.state.solved) {
+            this.props.parentCallback(this.state.solvedInp);
+            this.setState({
+                solved: false,
+                input: ""
+            })
+            this.props.parent2Call(true);
+            console.log(this.state.solvedInp);
+            
+        }else{
+            this.props.parentCallback(this.state.input);
         }
-        passState();
+    }
+    componentDidMount(){
+        document.addEventListener('keydown', this.handleKeyDown, false);
+    }
+    componentWillUnmount(){
+        document.removeEventListener('keydown', this.handleKeyDown, false);
+    }
+    handleKeyDown(e){
+        console.log(e.keyCode);
+        switch(e.keyCode){
+            case 48:
+                this.state.input = this.state.input + '0';
+                break;
+            case 49:
+                this.state = {
+                    input: this.state.input + '1'
+                }
+                break;
+            case '2':
+                this.state = {
+                    input: this.state.input + '2'
+                }
+                break;
+            case '3':
+                this.state = {
+                    input: this.state.input + '3'
+                }
+                break;
+            case '4':
+                this.state = {
+                    input: this.state.input + '4'
+                }
+                break;
+            case '5':
+                this.state.input = this.state.input + '5';
+                break;
+            case '6':
+                this.state.input = this.state.input + '6';
+                break;
+            case '7':
+                this.state.input = this.state.input + '7';
+                break;
+            case '8':
+                this.state.input = this.state.input + '8';
+                break;
+            case '9':
+                this.state.input = this.state.input + '9';
+                break;
+            case '+':
+                this.state.input = this.state.input + '+';
+                break;
+            case '-':
+                this.state.input = this.state.input + '-';
+                break;
+            case '*':
+                this.state.input = this.state.input + '*';
+                break;
+            case '/':
+                this.state.input = this.state.input + '/';
+                break;
+            case 13:
+                this.state = {
+                    solvedInp: evaluate(this.state.input),
+                    input: "",
+                    solved: true
+                }
+                break;
+            default:
+                this.state.input = this.state.input ;
+                console.log(this.state.input);
+                break;
+        }
+        this.sendBack();
     }
 }
