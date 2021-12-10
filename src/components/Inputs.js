@@ -7,7 +7,7 @@ export default class Inputs extends React.Component{
     constructor(props){
         super(props);
         this.processInput = this.processInput.bind(this);
-        this.handleKeyDown = this.handleKeyDown.bind(this);
+        //this.handleKeyDown = this.handleKeyDown.bind(this);
         this.state = {
             input: "",
             solvedInp: "",
@@ -80,12 +80,14 @@ export default class Inputs extends React.Component{
             this.props.parentCallback(this.state.input);
         }
     }
+    /*
     componentDidMount(){
         document.addEventListener('keydown', this.handleKeyDown, false);
     }
     componentWillUnmount(){
         document.removeEventListener('keydown', this.handleKeyDown, false);
     }
+    
     handleKeyDown(e){
         console.log(e.keyCode);
         switch(e.keyCode){
@@ -93,50 +95,50 @@ export default class Inputs extends React.Component{
                 this.state.input = this.state.input + '0';
                 break;
             case 49:
-                this.state = {
-                    input: this.state.input + '1'
-                }
+                this.state.input = this.state.input + '1';
                 break;
-            case '2':
+            case 50:
                 this.state = {
                     input: this.state.input + '2'
                 }
                 break;
-            case '3':
+            case 51:
                 this.state = {
                     input: this.state.input + '3'
                 }
                 break;
-            case '4':
+            case 52:
                 this.state = {
                     input: this.state.input + '4'
                 }
                 break;
-            case '5':
+            case 53:
                 this.state.input = this.state.input + '5';
                 break;
-            case '6':
+            case 54:
                 this.state.input = this.state.input + '6';
                 break;
-            case '7':
+            case 55:
                 this.state.input = this.state.input + '7';
                 break;
-            case '8':
+            case 56:
                 this.state.input = this.state.input + '8';
                 break;
-            case '9':
+            case 57:
                 this.state.input = this.state.input + '9';
                 break;
-            case '+':
+            case 190:
+                this.state.input = this.state.input + '.';
+            case 107:
                 this.state.input = this.state.input + '+';
                 break;
-            case '-':
+            case 109:
                 this.state.input = this.state.input + '-';
                 break;
-            case '*':
+            case 106:
                 this.state.input = this.state.input + '*';
                 break;
-            case '/':
+            case 111:
                 this.state.input = this.state.input + '/';
                 break;
             case 13:
@@ -146,11 +148,7 @@ export default class Inputs extends React.Component{
                     solved: true
                 }
                 break;
-            default:
-                this.state.input = this.state.input ;
-                console.log(this.state.input);
-                break;
         }
         this.sendBack();
-    }
+    }*/
 }
